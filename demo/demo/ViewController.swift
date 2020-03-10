@@ -6,7 +6,9 @@
 //  Copyright © 2019 binary. All rights reserved.
 //
 
+import Lokal
 import UIKit
+import FFLog
 
 class ViewController: UIViewController {
 
@@ -14,6 +16,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
+        
+        print(Lokal.lokal)
+        
+        FFLog.show("log")
     }
 
 

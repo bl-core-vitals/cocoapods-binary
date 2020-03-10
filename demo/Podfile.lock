@@ -1,16 +1,23 @@
 PODS:
-  - Masonry (1.1.0)
+  - FFLog (0.1.1)
+  - Lokal (1.0.0)
 
 DEPENDENCIES:
-  - Masonry
+  - FFLog
+  - Lokal (from `Lokal`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - Masonry
+  https://cdn.cocoapods.org/:
+    - FFLog
+
+EXTERNAL SOURCES:
+  Lokal:
+    :path: Lokal
 
 SPEC CHECKSUMS:
-  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  FFLog: a4cc4da7f2885df7dac2e6b5aed35639af634efc
+  Lokal: c7b8860fdf2f5198162f4d9168ac0bfd283c69f5
 
-PODFILE CHECKSUM: 5daab9dbab4736d6a1b3df2ffa8d856285c16553
+PODFILE CHECKSUM: 2b41493eb4d494ba1a7355ed84028c0cfcb18f4f
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.8.4

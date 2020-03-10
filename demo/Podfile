@@ -7,6 +7,10 @@ all_binary!
 
 target 'demo' do
 
-  pod 'Masonry'
+  pod 'FFLog', :binary => true
+  pod 'Lokal', :path => 'Lokal', :binary => true
+  
+#  pod 'FFLog'
+#  pod 'Lokal', :path => 'Lokal'
 
 end
