@@ -22,7 +22,7 @@ module Pod
         class PodSourceInstaller
 
             def install_for_prebuild!(standard_sanbox)
-                if Podfile::DSL.enable_prebuild_dev_pod
+                if Podfile::DSL.disabled_prebuild_local_pod
                     return if standard_sanbox.local? self.name
                 end
 
@@ -132,7 +132,7 @@ module Pod
 
             updated_names.each do |name|
                 root_name = Specification.root_name(name)
-                if Pod::Podfile.enable_prebuild_dev_pod
+                if Pod::Podfile.disabled_prebuild_local_pod
                     next if self.sandbox.local?(root_name)
                 end
 
