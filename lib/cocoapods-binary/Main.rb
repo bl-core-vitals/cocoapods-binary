@@ -55,6 +55,10 @@ module Pod
                 end
             end
 
+            def enable_devpod_prebuild
+                DSL.enable_prebuild_dev_pod = true
+            end
+
             private
             class_attr_accessor :prebuild_all
             prebuild_all = false
@@ -67,6 +71,10 @@ module Pod
 
             class_attr_accessor :custom_build_options
             class_attr_accessor :custom_build_options_simulator
+
+            class_attr_accessor :enable_prebuild_dev_pod
+            self.enable_prebuild_dev_pod = false
+
             self.custom_build_options = []
             self.custom_build_options_simulator = []
         end

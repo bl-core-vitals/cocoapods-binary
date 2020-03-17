@@ -22,7 +22,9 @@ module Pod
         class PodSourceInstaller
 
             def install_for_prebuild!(standard_sanbox)
-                return if standard_sanbox.local? self.name
+                if Podfile::DSL.enable_prebuild_dev_pod
+                    return if standard_sanbox.local? self.name
+                end
 
                 # make a symlink to target folder
                 prebuild_sandbox = Pod::PrebuildSandbox.from_standard_sandbox(standard_sanbox)
@@ -63,8 +65,13 @@ module Pod
                     if target_names.count > 1 
                         target_folder += real_file_folder.basename
                     end
-                    target_folder.rmtree if target_folder.exist?
-                    target_folder.mkpath
+
+                    if !standard_sanbox.local?(name)
+                        target_folder.rmtree if target_folder.exist?
+                        target_folder.mkpath
+                    else
+                        system "find #{target_folder} -type l -delete" # Only clean up symlink, keep source code for local pod
+                    end
 
 
                     walk(real_file_folder) do |child|
@@ -88,6 +95,7 @@ module Pod
                     path_objects = hash[name]
                     if path_objects != nil
                         path_objects.each do |object|
+                            puts "#FileUtils path_objects #{object.real_file_path} #{object.target_file_path}."
                             make_link(object.real_file_path, object.target_file_path)
                         end
                     end
@@ -124,7 +132,9 @@ module Pod
 
             updated_names.each do |name|
                 root_name = Specification.root_name(name)
-                next if self.sandbox.local?(root_name)
+                if Pod::Podfile.enable_prebuild_dev_pod
+                    next if self.sandbox.local?(root_name)
+                end
 
                 # delete the cached files
                 target_path = self.sandbox.pod_dir(root_name)
