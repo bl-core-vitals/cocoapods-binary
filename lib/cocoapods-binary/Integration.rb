@@ -95,7 +95,6 @@ module Pod
                     path_objects = hash[name]
                     if path_objects != nil
                         path_objects.each do |object|
-                            puts "#FileUtils path_objects #{object.real_file_path} #{object.target_file_path}."
                             make_link(object.real_file_path, object.target_file_path)
                         end
                     end
@@ -279,7 +278,7 @@ module Pod
                     # If the path isn't an absolute path, we add a realtive prefix.
                     old_read_link=`which readlink`
                     readlink () {
-                        path=`$old_read_link $1`;
+                        path=`$old_read_link "$1"`;
                         if [ $(echo "$path" | cut -c 1-1) = '/' ]; then
                             echo $path;
                         else
