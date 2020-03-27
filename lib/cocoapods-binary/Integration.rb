@@ -282,7 +282,7 @@ module Pod
                         if [ $(echo "$path" | cut -c 1-1) = '/' ]; then
                             echo $path;
                         else
-                            echo "`dirname $1`/$path";
+                            echo "`dirname "$1"`/$path";
                         fi
                     }
                     # --- 
