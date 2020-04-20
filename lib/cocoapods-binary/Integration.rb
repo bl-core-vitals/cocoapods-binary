@@ -4,7 +4,7 @@ require_relative 'helper/prebuild_sandbox'
 require_relative 'helper/passer'
 require_relative 'helper/names'
 require_relative 'helper/target_checker'
-
+require 'shellwords'
 
 # NOTE:
 # This file will only be loaded on normal pod install step
@@ -70,7 +70,7 @@ module Pod
                         target_folder.rmtree if target_folder.exist?
                         target_folder.mkpath
                     else
-                        system "find #{target_folder} -type l -delete" # Only clean up symlink, keep source code for local pod
+                        system "find #{target_folder.shellescape} -type l -delete" # Only clean up symlink, keep source code for local pod
                     end
 
 
