@@ -2,7 +2,7 @@ require 'fourflusher'
 require 'xcpretty'
 require 'shellwords'
 
-CONFIGURATION = "Release"
+CONFIGURATION = ENV['COCOAPODS_BINARY_BUILD_CONFIGURATION'] || "Release"
 PLATFORMS = { 'iphonesimulator' => 'iOS',
               'appletvsimulator' => 'tvOS',
               'watchsimulator' => 'watchOS' }
